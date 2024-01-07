@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$main: #047857;
+$color2: #7482A5;
+$color3: white;
+
+// Menu
+#menuButton {
+  transition: all 1s ease-in-out;
+}
+.mobile-menu {
+  background-color: $main;
+  transition: all 1s ease-out;
+  overflow: hidden;
+}
+
+.mobile-menu ul {
+  border-top: 1px solid $color3;
+  margin: 0;
+}
+
+.animated-background {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(45deg, #222831, #222831, #222831, #222831, #222831);
+  background-size: 400% 400%;
+  animation: gradientAnimation 12s ease-in-out;
+}
+
+@keyframes gradientAnimation {
+  0%, 100% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+}

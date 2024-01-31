@@ -21,14 +21,6 @@ $color3: white;
   margin: 0;
 }
 
-.animated-background {
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(45deg, #222831, #222831, #222831, #222831, #222831);
-  background-size: 400% 400%;
-  animation: gradientAnimation 12s ease-in-out;
-}
-
 @keyframes gradientAnimation {
   0%, 100% {
       background-position: 0% 50%;

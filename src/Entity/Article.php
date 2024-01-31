@@ -3,14 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
+    use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -26,13 +27,12 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Comment::class, orphanRemoval: true)]
-    private Collection $comments;
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
 
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
 
     public function getId(): ?int
     {
@@ -75,32 +75,26 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection<int, Comment>
-     */
-    public function getComments(): Collection
+    public function getDescription(): ?string
     {
-        return $this->comments;
+        return $this->description;
     }
 
-    public function addComment(Comment $comment): self
+    public function setDescription(string $description): self
     {
-        if (!$this->comments->contains($comment)) {
-            $this->comments->add($comment);
-            $comment->setArticle($this);
-        }
+        $this->description = $description;
 
         return $this;
     }
 
-    public function removeComment(Comment $comment): self
+    public function getCategory(): ?Category
     {
-        if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getArticle() === $this) {
-                $comment->setArticle(null);
-            }
-        }
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

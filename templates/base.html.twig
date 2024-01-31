@@ -15,7 +15,7 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body class="animated-background">
+<body class="bg-background">
 {% block header %}
     {% for flash in app.flashes %}
         
@@ -24,11 +24,11 @@
             <div class="container flex items-center justify-between mx-auto px-3 text-title">
                 <div>
                     <a href="/" class="flex items-center transition transform ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
-                        <img src="{{ asset('assets/img/dark_logo.png') }}" class="h-16 mr-3 sm:h-16" alt="Mozoou Logo">
+                        <img src="{{ asset('assets/img/light_logo.png') }}" class="h-16 mr-3 sm:h-16" alt="Mozoou Logo">
                         <span class="self-center text-xl font-semibold whitespace-nowrap">mozoou.dev</span>
                     </a>
                 </div>
-                {# <div>
+                <div>
                     <ul class="flex flex-col p-4 mt-4 space-y-1 md:flex-row md:space-x-4 md:mt-0 md:text-sm md:font-medium md:border-0 dark:border-gray-700">
                         <li>
                             <a href="{{ path('app_blog') }}" class="block py-2 px-3 my-1 hover:text-indigo-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-indigo-500">
@@ -36,7 +36,7 @@
                             </a>
                         </li>
                     </ul>
-                </div> #}
+                </div>
             </div>
         </nav>
     {% endblock header %}
